@@ -180,3 +180,20 @@ After this local test works, replace the `Build Payload` node in n8n with:
 - RSS/News source nodes
 - AI summarization node
 - same `POST /ingest` node
+
+## Home Page
+<img width="1920" height="1226" alt="image" src="https://github.com/user-attachments/assets/67e6a0c3-3b42-4b93-8a1a-31c1fec903a6" />
+
+## Articel
+<img width="1920" height="1278" alt="image" src="https://github.com/user-attachments/assets/98467ee6-3ec2-498a-a8a0-a18ac7a86797" />
+
+##Admin Panel
+<img width="1915" height="905" alt="image" src="https://github.com/user-attachments/assets/a6b1c2d1-285b-4914-ab75-c80d5e9d7531" />
+
+##Analytic
+<img width="1920" height="946" alt="image" src="https://github.com/user-attachments/assets/de4a672c-b43c-4f05-95f9-440112a5b221" />
+
+##n8n Workflow
+<img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/ac59ea25-ecd7-441b-ab8b-4a5261817e1d" />
+
+
