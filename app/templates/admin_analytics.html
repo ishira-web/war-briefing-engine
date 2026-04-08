@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Analytics</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+      .wrap { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+      .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--panel); }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+      th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 0.45rem; }
+      a { color: var(--cyan); text-decoration: none; }
+      button { background: #070b12; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 0.45rem 0.8rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Admin Analytics</h1>
+      <p>
+        <a href="/admin/review?admin_key={{ request.query_params.get('admin_key') }}">Review queue</a> |
+        <a href="/admin/conflicts?admin_key={{ request.query_params.get('admin_key') }}">Conflicts</a>
+      </p>
+      <form method="post" action="/admin/analytics/rebuild-reliability?admin_key={{ request.query_params.get('admin_key') }}">
+        <button type="submit">Rebuild Reliability From Current Data</button>
+      </form>
+
+      <div class="card">
+        <h3>Conflict Trend Snapshot</h3>
+        <p class="meta">
+          open={{ conflict_counts.open }} |
+          resolved={{ conflict_counts.resolved }} |
+          false_positive={{ conflict_counts.false_positive }} |
+          needs_investigation={{ conflict_counts.needs_investigation }}
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Region Distribution</h3>
+        <table>
+          <tr><th>Region</th><th>Articles</th></tr>
+          {% for region, count in region_stats %}
+            <tr><td>{{ region }}</td><td>{{ count }}</td></tr>
+          {% else %}
+            <tr><td colspan="2">No data yet</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Source Reliability (Lowest First)</h3>
+        <table>
+          <tr>
+            <th>Source</th>
+            <th>Score</th>
+            <th>Total</th>
+            <th>Open</th>
+            <th>Resolved</th>
+            <th>False+</th>
+            <th>Needs Inv.</th>
+          </tr>
+          {% for row in reliability_rows %}
+            <tr>
+              <td>{{ row.source_name }}</td>
+              <td>{{ '%.2f'|format(row.reliability_score) }}</td>
+              <td>{{ row.total_articles }}</td>
+              <td>{{ row.conflicts_open }}</td>
+              <td>{{ row.conflicts_resolved }}</td>
+              <td>{{ row.conflicts_false_positive }}</td>
+              <td>{{ row.needs_investigation }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="7">No source reliability data yet</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

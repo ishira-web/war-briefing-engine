@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ article.title }}</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; --red:#ff4b6b; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+      .wrap { max-width: 980px; margin: 2rem auto; padding: 0 1rem; }
+      .panel { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 1rem 1.1rem; }
+      a { color: var(--cyan); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      .summary { background: rgba(41,211,255,0.08); border-left: 4px solid var(--cyan); padding: 0.8rem; border-radius: 6px; }
+      .claim { border-left: 4px solid var(--red); background: rgba(255,75,107,0.08); border-radius: 6px; padding: 0.7rem; margin-bottom: 0.7rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <p><a href="/articles">Back to archive</a></p>
+        <h1>{{ article.title }}</h1>
+        <p class="meta">{{ article.source_name }} | {{ article.published_at }}</p>
+        <p class="summary"><strong>Summary:</strong> {{ article.summary }}</p>
+        <h3>Details</h3>
+        <p>{{ article.body }}</p>
+        <h3>Extracted Claims</h3>
+        {% for claim in claims %}
+          <div class="claim">
+            <p><strong>Claim:</strong> {{ claim.claim_text }}</p>
+            <p class="meta">
+              verdict={{ claim.verdict }} | confidence={{ '%.2f'|format(claim.confidence_score) }} |
+              <a href="{{ claim.citation_url }}" target="_blank" rel="noopener noreferrer">citation</a>
+            </p>
+          </div>
+        {% else %}
+          <p class="meta">No claim blocks available for this article.</p>
+        {% endfor %}
+        <h3>Source</h3>
+        <p><a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">{{ article.source_url }}</a></p>
+        <p class="meta">AI-generated summary. Extraction model: {{ article.extraction_model }}. Validate with original sources.</p>
+      </div>
+    </div>
+  </body>
+</html>

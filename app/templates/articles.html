@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Archive</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+      .wrap { max-width: 980px; margin: 2rem auto; padding: 0 1rem; }
+      .panel { border:1px solid var(--line); background:var(--panel); border-radius:12px; padding:1rem 1.2rem; }
+      a { color: var(--cyan); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      li { margin-bottom: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <h1>Archive // Published Briefings</h1>
+        <p><a href="/">Back to live feed</a></p>
+        <ul>
+          {% for article in articles %}
+            <li>
+              <a href="/articles/{{ article.slug }}">{{ article.title }}</a>
+              <div class="meta">{{ article.source_name }} | {{ article.published_at }}</div>
+            </li>
+          {% else %}
+            <li class="meta">No published articles yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

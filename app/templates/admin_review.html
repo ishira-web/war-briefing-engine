@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Admin Review</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; --green:#16c47f; --red:#ff4b6b; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+      .wrap { max-width: 1080px; margin: 2rem auto; padding: 0 1rem; }
+      .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--panel); }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      .score { font-weight: bold; color: var(--cyan); }
+      textarea { width: 100%; min-height: 80px; margin-top: 0.5rem; background: #070b12; color: var(--text); border: 1px solid var(--line); border-radius: 8px; }
+      button { margin-right: 0.5rem; padding: 0.5rem 0.8rem; border-radius: 8px; }
+      .pub { background: var(--green); color: #00170c; border: none; font-weight: 600; }
+      .rej { background: var(--red); color: #190007; border: none; font-weight: 600; }
+      a { color: var(--cyan); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Editorial Review Queue</h1>
+      <p>
+        <a href="/">Public homepage</a> |
+        <a href="/admin/published?admin_key={{ request.query_params.get('admin_key') }}">Published log</a> |
+        <a href="/admin/conflicts?admin_key={{ request.query_params.get('admin_key') }}">Open conflicts</a> |
+        <a href="/admin/analytics?admin_key={{ request.query_params.get('admin_key') }}">Analytics</a>
+      </p>
+      {% for article, review in rows %}
+        <div class="card">
+          <h3>{{ article.title }}</h3>
+          <p class="meta">{{ article.source_name }} | {{ article.created_at }}</p>
+          <p class="score">Confidence: {{ '%.2f'|format(review.confidence_score) }}</p>
+          <p class="meta">Band: {{ review.confidence_band }} | Sources matched: {{ review.source_count }} | Region: {{ article.region }}</p>
+          <p>{{ article.summary }}</p>
+          <p><a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">Source link</a></p>
+
+          <form method="post" action="/admin/review/{{ article.id }}/publish?admin_key={{ request.query_params.get('admin_key') }}">
+            <label>Editor note</label>
+            <textarea name="editor_note" placeholder="Optional note before publishing"></textarea>
+            <button class="pub" type="submit">Publish</button>
+          </form>
+          <form method="post" action="/admin/review/{{ article.id }}/reject?admin_key={{ request.query_params.get('admin_key') }}">
+            <label>Reject note</label>
+            <textarea name="editor_note" placeholder="Reason for rejection"></textarea>
+            <button class="rej" type="submit">Reject</button>
+          </form>
+        </div>
+      {% else %}
+        <p class="meta">No pending reviews right now.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

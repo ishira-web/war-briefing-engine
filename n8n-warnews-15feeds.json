@@ -1,0 +1,631 @@
+{
+  "name": "War News - 15 RSS Feeds to FastAPI",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0b21f0e3-697a-463d-b554-987d2b7e2f01",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f01",
+      "name": "RSS 01 BBC World Stable",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f02",
+      "name": "RSS 02 BBC Top",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://feeds.bbci.co.uk/news/world/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f03",
+      "name": "RSS 03 BBC World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.aljazeera.com/xml/rss/all.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f04",
+      "name": "RSS 04 Al Jazeera",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f05",
+      "name": "RSS 05 NYT World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.theguardian.com/world/rss"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f06",
+      "name": "RSS 06 Guardian World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://rss.dw.com/rdf/rss-en-world"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f07",
+      "name": "RSS 07 DW World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.france24.com/en/rss"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f08",
+      "name": "RSS 08 France24",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.npr.org/1004/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f09",
+      "name": "RSS 09 NPR World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.skynews.com/feeds/rss/world.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f10",
+      "name": "RSS 10 Sky World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://rss.cnn.com/rss/edition_world.rss"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f11",
+      "name": "RSS 11 CNN World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f12",
+      "name": "RSS 12 UN News",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://moxie.foxnews.com/google-publisher/world.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f13",
+      "name": "RSS 13 Fox World",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f14",
+      "name": "RSS 14 Jerusalem Post",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://reliefweb.int/updates/rss.xml"
+      },
+      "id": "7a21f0e3-697a-463d-b554-987d2b7e2f15",
+      "name": "RSS 15 ReliefWeb",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "continueOnFail": true,
+      "position": [
+        500,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const titleRaw = ($json.title || '').trim();\nconst summaryRaw = ($json.contentSnippet || $json.description || '').trim();\nconst bodyRaw = ($json.content || $json.description || $json.contentSnippet || '').trim();\nif (titleRaw.length < 12 || summaryRaw.length < 40 || !($json.link || $json.feedUrl)) {\n  return [];\n}\nconst haystack = `${titleRaw} ${summaryRaw} ${bodyRaw}`.toLowerCase();\nconst keywords = ['war','conflict','airstrike','military','ceasefire','missile','invasion','troops','shelling','drone','battle','front line','hostage','artillery','offensive','defense ministry'];\nif (!keywords.some(k => haystack.includes(k))) {\n  return [];\n}\nlet region = 'global';\nif (/(ukraine|russia|nato|black sea|poland)/.test(haystack)) region = 'europe';\nelse if (/(gaza|israel|iran|syria|lebanon|yemen)/.test(haystack)) region = 'middle-east';\nelse if (/(sudan|sahel|somalia|ethiopia|congo)/.test(haystack)) region = 'africa';\nelse if (/(taiwan|south china sea|myanmar|korean peninsula)/.test(haystack)) region = 'asia';\nconst normalizedTitle = titleRaw.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\\s+/g, ' ').trim();\nconst base = normalizedTitle || String($json.link || '');\nlet hash = 2166136261;\nfor (let i = 0; i < base.length; i++) {\n  hash ^= base.charCodeAt(i);\n  hash = (hash * 16777619) >>> 0;\n}\nconst eventKey = hash.toString(16).padStart(8, '0') + base.length.toString(16).padStart(8, '0');\nlet confidenceHint = 0.55;\nif (summaryRaw.length > 140) confidenceHint += 0.1;\nif (/(bbc|reuters|associated press|ap news|un news|guardian)/.test(haystack)) confidenceHint += 0.1;\nif (/(unconfirmed|rumou?r|reportedly)/.test(haystack)) confidenceHint -= 0.15;\nconfidenceHint = Math.max(0, Math.min(1, confidenceHint));\nreturn [{ json: { ...$json, title: titleRaw, contentSnippet: summaryRaw, content: bodyRaw, region, event_key: eventKey, confidence_hint: confidenceHint } }];"
+      },
+      "id": "16cf5a95-a3dd-4c95-a8ea-8bbd53d10b2b",
+      "name": "Validate and Enrich",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        820,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json.title || 'Untitled War Update' }}"
+            },
+            {
+              "name": "summary",
+              "value": "={{ $json.contentSnippet || $json.description || 'No summary available from feed.' }}"
+            },
+            {
+              "name": "body",
+              "value": "={{ $json.content || $json.description || $json.contentSnippet || 'No body available from feed.' }}"
+            },
+            {
+              "name": "source_name",
+              "value": "={{ $json.creator || $json['dc:creator'] || $json.feedTitle || $json.isoDate || 'unknown-source' }}"
+            },
+            {
+              "name": "source_url",
+              "value": "={{ $json.link || $json.feedUrl || 'https://example.com' }}"
+            },
+            {
+              "name": "raw_title",
+              "value": "={{ $json.title || '' }}"
+            },
+            {
+              "name": "raw_content",
+              "value": "={{ $json.content || $json.description || $json.contentSnippet || '' }}"
+            },
+            {
+              "name": "run_id",
+              "value": "={{ 'rss15-' + $now }}"
+            },
+            {
+              "name": "status",
+              "value": "ok"
+            },
+            {
+              "name": "error",
+              "value": ""
+            },
+            {
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || $now }}"
+            },
+            {
+              "name": "region",
+              "value": "={{ $json.region || 'global' }}"
+            },
+            {
+              "name": "event_key",
+              "value": "={{ $json.event_key || '' }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "tokens",
+              "value": 0
+            },
+            {
+              "name": "confidence_hint",
+              "value": "={{ Number($json.confidence_hint || 0) }}"
+            }
+          ]
+        }
+      },
+      "id": "46074068-0644-4a83-bad3-11ecb70b66a2",
+      "name": "Map to Ingest Payload",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://app:8000/ingest",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.INGEST_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false
+            }
+          }
+        }
+      },
+      "id": "12209d81-62b6-4f80-8199-6df6362f4df3",
+      "name": "POST to FastAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "continueOnFail": true,
+      "position": [
+        1340,
+        500
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS 01 BBC World Stable",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 02 BBC Top",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 03 BBC World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 04 Al Jazeera",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 05 NYT World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 06 Guardian World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 07 DW World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 08 France24",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 09 NPR World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 10 Sky World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 11 CNN World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 12 UN News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 13 Fox World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 14 Jerusalem Post",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS 15 ReliefWeb",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 01 BBC World Stable": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 02 BBC Top": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 03 BBC World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 04 Al Jazeera": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 05 NYT World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 06 Guardian World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 07 DW World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 08 France24": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 09 NPR World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 10 Sky World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 11 CNN World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 12 UN News": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 13 Fox World": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 14 Jerusalem Post": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS 15 ReliefWeb": {
+      "main": [
+        [
+          {
+            "node": "Validate and Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate and Enrich": {
+      "main": [
+        [
+          {
+            "node": "Map to Ingest Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map to Ingest Payload": {
+      "main": [
+        [
+          {
+            "node": "POST to FastAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5f64f9eb-74ae-4fb0-a211-b27508e1cb2a",
+  "meta": {},
+  "id": "warnews-rss15",
+  "tags": []
+}

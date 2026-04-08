@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Published Log</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+      .wrap { max-width: 1080px; margin: 2rem auto; padding: 0 1rem; }
+      .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--panel); }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      a { color: var(--cyan); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Published Articles (Admin)</h1>
+      <p>
+        <a href="/admin/review?admin_key={{ request.query_params.get('admin_key') }}">Review queue</a> |
+        <a href="/admin/conflicts?admin_key={{ request.query_params.get('admin_key') }}">Open conflicts</a> |
+        <a href="/admin/analytics?admin_key={{ request.query_params.get('admin_key') }}">Analytics</a>
+      </p>
+      {% for article, review in rows %}
+        <div class="card">
+          <h3><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h3>
+          <p class="meta">
+            {{ article.source_name }} | {{ article.published_at }} | region={{ article.region }} |
+            band={{ review.confidence_band }} ({{ '%.2f'|format(review.confidence_score) }}) | sources={{ review.source_count }}
+          </p>
+        </div>
+      {% else %}
+        <p class="meta">No published items yet.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

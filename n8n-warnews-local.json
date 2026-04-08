@@ -1,0 +1,138 @@
+{
+  "name": "War News Local Ingest",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "12dfd865-7f67-4a1d-8901-0457e148f8f5",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        260,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "source_name",
+              "value": "Reuters"
+            },
+            {
+              "name": "source_url",
+              "value": "https://www.reuters.com/world/"
+            },
+            {
+              "name": "raw_title",
+              "value": "Sample conflict update from source"
+            },
+            {
+              "name": "raw_content",
+              "value": "Original source snippet for local testing."
+            },
+            {
+              "name": "title",
+              "value": "Local Test War News Headline"
+            },
+            {
+              "name": "summary",
+              "value": "This is a local test summary generated in the n8n starter workflow."
+            },
+            {
+              "name": "body",
+              "value": "Detailed local test body. Replace this node with RSS + AI summarization nodes after base integration is validated."
+            },
+            {
+              "name": "run_id",
+              "value": "manual-test"
+            },
+            {
+              "name": "status",
+              "value": "ok"
+            },
+            {
+              "name": "error",
+              "value": ""
+            }
+          ],
+          "number": [
+            {
+              "name": "tokens",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "id": "8c626f50-1842-4888-ab6a-4f7f97db8a66",
+      "name": "Build Payload",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://app:8000/ingest",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.INGEST_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "526bec2a-bc61-49b4-8560-f60daa85de2b",
+      "name": "POST to FastAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Build Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Payload": {
+      "main": [
+        [
+          {
+            "node": "POST to FastAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ce22efea-c949-4f44-a685-6caabddb8c0f",
+  "id": "2",
+  "tags": []
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Conflict Alerts</title>
+    <style>
+      :root { --bg:#05070b; --panel:#0d121b; --line:#1b2738; --text:#d8e4ff; --muted:#8ea0c2; --cyan:#29d3ff; --red:#ff4b6b; }
+      body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+      .wrap { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+      .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--panel); }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      .score { font-weight: bold; color: var(--red); }
+      a { color: var(--cyan); text-decoration: none; }
+      .claim { background: rgba(255,75,107,0.07); border-left: 4px solid var(--red); padding: 0.6rem; margin: 0.4rem 0; border-radius: 6px; }
+      select, input, button { background: #070b12; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 0.35rem 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Open Claim Conflicts</h1>
+      <p>
+        <a href="/admin/review?admin_key={{ request.query_params.get('admin_key') }}">Review queue</a> |
+        <a href="/admin/published?admin_key={{ request.query_params.get('admin_key') }}">Published log</a> |
+        <a href="/admin/analytics?admin_key={{ request.query_params.get('admin_key') }}">Analytics</a>
+      </p>
+      {% for conflict, claim_a, article_a, claim_b, article_b in rows %}
+        <div class="card">
+          <p class="score">Conflict score: {{ '%.2f'|format(conflict.score) }} | {{ conflict.reason }} | event={{ conflict.event_key }}</p>
+          <div class="claim">
+            <p><strong>A:</strong> {{ claim_a.claim_text }}</p>
+            <p class="meta">{{ article_a.source_name }} | <a href="{{ article_a.source_url }}" target="_blank" rel="noopener noreferrer">source</a></p>
+          </div>
+          <div class="claim">
+            <p><strong>B:</strong> {{ claim_b.claim_text }}</p>
+            <p class="meta">{{ article_b.source_name }} | <a href="{{ article_b.source_url }}" target="_blank" rel="noopener noreferrer">source</a></p>
+          </div>
+          <form method="post" action="/admin/conflicts/{{ conflict.id }}/status?admin_key={{ request.query_params.get('admin_key') }}">
+            <p class="meta">Action</p>
+            <select name="status">
+              <option value="resolved">resolved</option>
+              <option value="false_positive">false_positive</option>
+              <option value="needs_investigation">needs_investigation</option>
+              <option value="open">open</option>
+            </select>
+            <input type="text" name="resolution_note" placeholder="optional note" style="width: 50%; margin-left: 0.4rem;" />
+            <button type="submit" style="margin-left: 0.4rem;">Save</button>
+          </form>
+        </div>
+      {% else %}
+        <p class="meta">No open conflicts detected yet.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

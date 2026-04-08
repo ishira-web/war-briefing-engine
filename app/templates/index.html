@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WARGRID // Live Briefing</title>
+    <style>
+      :root {
+        --bg: #05070b;
+        --panel: #0d121b;
+        --line: #1b2738;
+        --text: #d8e4ff;
+        --muted: #8ea0c2;
+        --cyan: #29d3ff;
+        --red: #ff4b6b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        margin: 0;
+        background: radial-gradient(1200px 500px at 80% -10%, #122338 0%, var(--bg) 55%);
+        color: var(--text);
+        line-height: 1.55;
+      }
+      .wrap { max-width: 980px; margin: 2rem auto; padding: 0 1rem; }
+      .hero {
+        border: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(41, 211, 255, 0.08), rgba(255, 75, 107, 0.05));
+        border-radius: 14px;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .brand { font-weight: 700; letter-spacing: 0.08em; color: var(--cyan); margin: 0; }
+      .subtitle { color: var(--muted); margin: 0.45rem 0 0 0; }
+      a { color: var(--cyan); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .meta { color: var(--muted); font-size: 0.92rem; }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        padding: 1rem;
+        margin-bottom: 0.9rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+      .chip {
+        display: inline-block;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        color: var(--red);
+        padding: 0.15rem 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <p class="brand">WARGRID // LIVE BRIEFING TERMINAL</p>
+        <p class="subtitle">AI-assisted conflict intelligence stream. Verify critical facts with primary sources before operational use.</p>
+        <p><a href="/articles">Open full archive</a> <span class="chip">Public Feed</span></p>
+      </div>
+      {% for article in articles %}
+        <div class="card">
+          <h3><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h3>
+          <p class="meta">{{ article.source_name }} | {{ article.published_at }}</p>
+          <p>{{ article.summary }}</p>
+        </div>
+      {% else %}
+        <p class="meta">No published articles yet. Ingest and approve items in admin queue.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>
